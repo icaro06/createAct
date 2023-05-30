@@ -20,7 +20,7 @@ func main() {
 	//Analysez s'il y a des arguments
 	if len(os.Args) < 4 {
 		fmt.Println("Erreur args \n Example : makeAct nom_fichier alms cmds space ")
-		os.Exit(0)
+		os.Exit(1)
 	}
 
 	fichier = os.Args[1] //Nom fichier
@@ -28,25 +28,25 @@ func main() {
 	alms, err = strconv.Atoi(os.Args[2]) //num. alms
 	if err != nil {
 		fmt.Println("Erreur num. alms :", err)
-		os.Exit(0)
+		os.Exit(1)
 	}
 
 	cmds, err = strconv.Atoi(os.Args[3]) //num. cmd
 	if err != nil {
 		fmt.Println("Erreur num. cmds :", err)
-		os.Exit(0)
+		os.Exit(1)
 	}
 
 	space, err = strconv.Atoi(os.Args[4]) //spacement
 	if err != nil {
 		fmt.Println("Erreur spacement :", err)
-		os.Exit(0)
+		os.Exit(1)
 	}
 
 	salidaFile, err := os.Create("act_" + fichier + ".txt") //fichier avec act_
 	if err != nil {
 		fmt.Println("Erreur lors de la création du fichier de sortie :", err)
-		os.Exit(0)
+		os.Exit(1)
 	}
 	defer salidaFile.Close()
 	//Write num.alms
@@ -84,12 +84,13 @@ func writeAlm(salidaFile *os.File, comentario string, valor int) {
 	fmt.Fprintln(salidaFile, "ALM_MASK:", "0")
 	fmt.Fprintln(salidaFile, "ALM_CHG:", "0")
 	fmt.Fprintln(salidaFile, "ALM_STATUS:", "0x11")
+
 	fmt.Fprintln(salidaFile, "ALM_SCNEW:\tbegin")
-	fmt.Fprintln(salidaFile, "\t\t\t\tinfo")
-	fmt.Fprintln(salidaFile, "\t\t\tend")
+	fmt.Fprintln(salidaFile, "\t\t\tinfo")
+	fmt.Fprintln(salidaFile, "\t\tend")
 	fmt.Fprintln(salidaFile, "ALM_SCOLD:\tbegin")
-	fmt.Fprintln(salidaFile, "\t\t\t\tinfo")
-	fmt.Fprintln(salidaFile, "\t\t\tend")
+	fmt.Fprintln(salidaFile, "\t\t\tinfo")
+	fmt.Fprintln(salidaFile, "\t\tend")
 	fmt.Fprintln(salidaFile, "")
 }
 
@@ -105,8 +106,8 @@ func writeCmd(salidaFile *os.File, comentario string, valor int) {
 	fmt.Fprintln(salidaFile, "CMD_OUT:", "0xF")
 	fmt.Fprintln(salidaFile, "CMD_STATUS:", "1")
 	fmt.Fprintln(salidaFile, "CMD_SC:", "\tbegin")
-	fmt.Fprintln(salidaFile, "\t\t\t\tinfo")
-	fmt.Fprintln(salidaFile, "\t\t\tend")
+	fmt.Fprintln(salidaFile, "\t\t\tinfo")
+	fmt.Fprintln(salidaFile, "\t\tend")
 	fmt.Fprintln(salidaFile, "")
 }
 
@@ -115,25 +116,25 @@ func writeEnd(salidaFile *os.File) {
 	fmt.Fprintln(salidaFile, "DATE_SC:", "\tbegin")
 	fmt.Fprintln(salidaFile, "\t\t\tend\n")
 
-	fmt.Fprintln(salidaFile, "COUNTER_SC:", "begin")
-	fmt.Fprintln(salidaFile, "\t\t\tend\n")
+	fmt.Fprintln(salidaFile, "COUNTER_SC:", "\tbegin")
+	fmt.Fprintln(salidaFile, "\t\tend\n")
 
 	fmt.Fprintln(salidaFile, "LOGIC_SC:", "\tbegin")
-	fmt.Fprintln(salidaFile, "\t\t\tend\n")
+	fmt.Fprintln(salidaFile, "\t\tend\n")
 
 	fmt.Fprintln(salidaFile, "CNTADD_SC:", "\tbegin")
-	fmt.Fprintln(salidaFile, "\t\t\tend\n")
+	fmt.Fprintln(salidaFile, "\t\tend\n")
 
-	fmt.Fprintln(salidaFile, "CNTADDF_SC:", "begin")
-	fmt.Fprintln(salidaFile, "\t\t\tend\n")
+	fmt.Fprintln(salidaFile, "CNTADDF_SC:", "\tbegin")
+	fmt.Fprintln(salidaFile, "\t\tend\n")
 
 	fmt.Fprintln(salidaFile, "MASKCMD0:", "\t{")
-	fmt.Fprintln(salidaFile, "\t\t\t}\n")
+	fmt.Fprintln(salidaFile, "\t\t}\n")
 
 	fmt.Fprintln(salidaFile, "MASKCMD1:", "\t{")
-	fmt.Fprintln(salidaFile, "\t\t\t}\n")
+	fmt.Fprintln(salidaFile, "\t\t}\n")
 
 	fmt.Fprintln(salidaFile, "MASKCMD2:", "\t{")
-	fmt.Fprintln(salidaFile, "\t\t\t}\n")
+	fmt.Fprintln(salidaFile, "\t\t}\n")
 
 }
