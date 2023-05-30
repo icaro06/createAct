@@ -1,0 +1,72 @@
+NBR_ALM: 2
+
+/**/
+ALM_NUM: 2
+ALM_OUT: 0xF
+ALM_MASK: 0
+ALM_CHG: 0
+ALM_STATUS: 0x11
+ALM_SCNEW:	begin
+				info
+			end
+ALM_SCOLD:	begin
+				info
+			end
+
+/**/
+ALM_NUM: 4
+ALM_OUT: 0xF
+ALM_MASK: 0
+ALM_CHG: 0
+ALM_STATUS: 0x11
+ALM_SCNEW:	begin
+				info
+			end
+ALM_SCOLD:	begin
+				info
+			end
+
+/* COMMANDES */
+
+NBR_CMD: 2
+
+/**/
+CMD_NUM: 2
+CMD_OUT: 0xF
+CMD_STATUS: 1
+CMD_SC: 	begin
+				info
+			end
+
+/**/
+CMD_NUM: 4
+CMD_OUT: 0xF
+CMD_STATUS: 1
+CMD_SC: 	begin
+				info
+			end
+
+DATE_SC: 	begin
+			end
+
+COUNTER_SC: begin
+			end
+
+LOGIC_SC: 	begin
+			end
+
+CNTADD_SC: 	begin
+			end
+
+CNTADDF_SC: begin
+			end
+
+MASKCMD0: 	{
+			}
+
+MASKCMD1: 	{
+			}
+
+MASKCMD2: 	{
+			}
+
