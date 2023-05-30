@@ -28,25 +28,25 @@ func main() {
 	alms, err = strconv.Atoi(os.Args[2]) //num. alms
 	if err != nil {
 		fmt.Println("Erreur num. alms :", err)
-		return
+		os.Exit(0)
 	}
 
 	cmds, err = strconv.Atoi(os.Args[3]) //num. cmd
 	if err != nil {
 		fmt.Println("Erreur num. cmds :", err)
-		return
+		os.Exit(0)
 	}
 
 	space, err = strconv.Atoi(os.Args[4]) //spacement
 	if err != nil {
 		fmt.Println("Erreur spacement :", err)
-		return
+		os.Exit(0)
 	}
 
 	salidaFile, err := os.Create("act_" + fichier + ".txt") //fichier avec act_
 	if err != nil {
 		fmt.Println("Erreur lors de la création du fichier de sortie :", err)
-		return
+		os.Exit(0)
 	}
 	defer salidaFile.Close()
 	//Write num.alms
